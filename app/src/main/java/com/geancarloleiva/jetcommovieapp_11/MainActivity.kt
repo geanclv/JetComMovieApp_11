@@ -4,40 +4,42 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.geancarloleiva.jetcommovieapp_11.ui.theme.JetComMovieApp_11Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetComMovieApp_11Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+            MovieApp {
+                MainContent()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MovieApp(content: @Composable () -> Unit) {
+    JetComMovieApp_11Theme {
+        Scaffold(topBar = {
+            TopAppBar(
+                backgroundColor = MaterialTheme.colors.primary,
+                elevation = 5.dp
+            ) {
+                Text(text = "Movie App")
+            }
+        }) {
+            content
+        }
+    }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
-    JetComMovieApp_11Theme {
-        Greeting("Android")
-    }
+fun MainContent() {
+
 }
