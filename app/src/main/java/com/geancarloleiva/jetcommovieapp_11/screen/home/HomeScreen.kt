@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.geancarloleiva.jetcommovieapp_11.navigation.MovieScreens
 
 @Composable
 fun HomeScreen(navController: NavController){
@@ -37,7 +38,8 @@ fun MainContent(navController: NavController,
         LazyColumn {
             items(items = lstMovie) {
                 MovieRow(movie = it){ movie ->
-
+                    navController.navigate(
+                        route = MovieScreens.DetailScreen.name+"/$movie")
                 }
             }
         }
